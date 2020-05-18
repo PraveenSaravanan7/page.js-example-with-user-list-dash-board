@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/theme.css" >
+    <script src="js/jquery.js" ></script>  
+    <title>NYX intern</title>
+  </head>
+  <body>
+    
+     <div class="root p10" >  
+         
+         <span class="text-primary" style="font-weight: bold;font-size: 2em;"  > <b>Dashbord</b></span>
+         <div class="middiv"   > 
+             <h2><b>Welcome</b></h2>
+         <input type="text" class="linp email" placeholder="Email" />
+             <br>
+             <br>
+         <input type="password" class="linp password" placeholder="Password" />
+             <br>
+             <br>
+             <button class="btn btn-block btn-primary btn-lg login disabled" onclick="login()" >Log in</button>
+             <br>
+             <br>
+             <span><b>email: admin@nyx.com<br>pass:nyxpassword</b></span>
+             <span class="info-login" ></span>
+         </div>
+         
+         <script>
+         $('.email').keyup(function(){
+                   $(this).val($(this).val().slice(0,64));
+	  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+if (regex.test($('.email').val()))
+    { $('.login').removeClass('disabled');  }
+else
+    {  $('.login').addClass('disabled'); }
+	});
+             $('.password').keyup(function(){
+	 var str= $('.password').val();
+                   $(this).val($(this).val().slice(0,30));
+                                 var n= str.length;
+                                 if(n<8)
+                                 {  $('.login').addClass('disabled');}
+                                 else{  $('.login').removeClass('disabled');}
+	});
+      
+             function login()
+             {
+                 $('.login').addClass('disabled');
+                 $('.login').text('Loading...');
+                 var email=$('.email').val();
+                    var password=$('.password').val();
+                 $.post('backend/login.php', {
+                 email:email,
+                     password:password
+              }, function(data) {
+                  
+                     
+                  if(data==1)
+                      {
+                        location.replace('index.html');
+                      }
+                     else{
+                         $('.info-login').html("<b>Wrong login info...</b>");
+                     }
+                  $('.login').removeClass('disabled');
+                 $('.login').text('Log In');
+               });
+             }
+             
+         </script>
+         
+     </div>
+    <script src="js/pages.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+  .p10
+          {
+              padding: 10px;
+          }
+      .middiv
+          {
+              position: fixed;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%,-50%);
+              background-color: white;
+              min-width: 300px;
+              max-width: 500px;
+              text-align: center;
+              padding: 20px;
+          }
+          .btn
+          {
+              border-radius: 30px;
+              font-weight: bold;
+          }
+          .br30
+          {
+              border-radius: 30px;
+          }
+          .boxs3
+            {
+                box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+            }
+            .boxs5
+            {
+                box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+            }
+            .boxs8
+            {
+                box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+            }
+            .boxs10
+            {
+                box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            }
+          .mr20
+          {
+              margin: 10px;
+          }
+          .linp
+    {
+     width: 100%;
+        border: 0px;
+        border-bottom:  2px solid #007bff;
+        padding: 5px;
+        font-weight: bold;
+        margin-top: 10px;
+        outline: 0;
+        font-size: 1.1em;
+    }
+          .disabled
+{
+    pointer-events: none;
+}
+    .topnavb
+            {
+                width: 100vw;
+                background: #fff;
+                padding: 10px;
+                position: fixed;
+                top:0;
+                left: 0;
+                border-bottom: 0px solid #d0d0d0;
+                z-index: 999;
+            }
+           .rbtn
+          {
+              position: fixed;bottom: 15px;right: 15px;z-index: 999;width: 9vh;height: 9vh;border-radius: 50%;background: #20b0ff;padding: 2px;
+          }
+ .mtop
+          {
+              margin-top: 70px;
+              padding: 20px;
+          }
+     .listo
+         {
+             
+             border-bottom: 1px solid #cbcbcb;
+             padding-top: 10px;
+             padding-bottom: 10px;
+         }
+          .listo > img
+         {
+             width: 25px;
+         }
+           .fright
+         {
+             float: right;margin: 5px;
+         }
+         g
+         {
+             color: grey;
+         }
+          

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/theme.css" >
+    <script src="js/jquery.js" ></script>  
+    <title>NYX intern</title>
+  </head>
+  <body>
+      
+       <script>
+    
+        function check_session()
+        {
+              $.post('backend/check_session.php', {
+                 check:1
+              }, function(data) {
+                  
+               
+                  if(data==0)
+                      {
+                         location.replace('login.html'); 
+                      }
+                  
+               });
+        }
+        check_session();
+        
+    </script>
+       
+     <div class="root p10 " >
+         <div class="topnavb" >
+             
+       <span class="text-primary" style="font-weight: bold;font-size: 2em;"  > <b>Dashbord</b>  </span>
+            
+         </div>
+         <div class="boxs3 rbtn" onclick="goto('add.html')" ><img src="icons/plus.svg" style="width: 100%;" /></div>
+         <div class="container">
+  <div class="row justify-content-md-center">
+         <div class="mtop col-md-5 userlist" >     
+           
+      </div>
+             </div>
+         </div>
+           <script>
+      
+          function listload(all=1)
+          {
+              //console.log(data);
+                   $.post('backend/list.php', {
+           
+             loadlist:1,all:all }, function(JSONObject) {
+             
+             JSONObject=JSON.parse(JSONObject);
+           
+          //JSONObject[key]["id"]
+                 for (var key in JSONObject) {
+        if (JSONObject.hasOwnProperty(key)) {
+            var u="'edit.html?uid="+JSONObject[key]["id"]+"'";
+         $('.userlist').prepend(' <div class="col-xs-8 listo listo'+JSONObject[key]['id']+'" ><h3>'+JSONObject[key]['name']+' <img src="icons/trash-2.svg" class="fright" onclick="dlt('+JSONObject[key]['id']+')"  /><img src="icons/edit.svg" class="fright" onclick="goto('+u+')"  />  </h3><span> <g>Email: </g><b>'+JSONObject[key]['email']+'</b></span><br><span><g>Phone: </g><b>'+JSONObject[key]['phone']+'</b></span><br><span><g>Address: </g><b>'+JSONObject[key]['address']+' </b></span><br><span><g>Date of Birth: </g><b>'+JSONObject[key]['dob']+'</b></span></div>');
+        }}
+        });
+          }
+      listload();
+               function dlt(id)
+               {
+                   console.log(id);
+                  $.post('backend/list.php', {
+                    uid:id }, function(data) {
+                      
+                      $('.listo'+id).remove();
+                      
+                  }); 
+               }
+            
+      </script>
+      
+     </div>
+      <script src="js/pages.js" ></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

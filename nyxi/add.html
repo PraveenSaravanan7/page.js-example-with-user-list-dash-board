@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/theme.css" >
+    <script src="js/jquery.js" ></script>  
+    <title>NYX intern</title>
+  </head>
+  <body>
+      
+     <div class="root" >  
+         <div class="topnavb" >
+          
+             <span class="text-primary" style="font-weight: bold;font-size: 1em;"  ><img onclick="goback()" src="icons/chevron-left.svg" style="width: 4vh;" />   <b>Add New</b></span>
+            
+         </div>
+         <div class="container">
+  <div class="row justify-content-md-center">
+         <div class="mtop col-md-5" >
+           <form method="post" action="backend/add.php" name="addnew" id="addnew" >
+         <span><b>Name</b></span>
+             <br>
+             <input required class="linp name" name="name" />
+             <br>
+             <br>
+             <span><b>Email</b></span>
+             <br>
+             
+             <input required class="linp email" name="email" type="email" />
+               <span class="info-email" ></span>
+             <br>
+             <br>
+             <span><b>Phone</b></span>
+             <br>
+             <input required class="linp phone" type="number" name="phone" />
+             <br>
+             <br>
+             <span><b>Address</b></span>
+             <br>
+             <input  required class="linp address" name="address" />
+             <br>
+             <br>
+             <span><b>Date of Birth</b></span>
+             <br>
+             <input required class="linp date" type="date" name="date" />
+               <br>
+               <br>
+               <button type="reset" style="display: none;" class="resetform" >reset</button>
+               <button class="btn btn-block btn-primary btn-lg subbtn" type="submit" name="aboutupdate" >
+               Submit</button>
+             </form>
+         </div>
+             </div>
+        <script type="text/javascript">
+$(document).ready(function (e) {
+	$("#addnew").on('submit',(function(e) {
+		e.preventDefault(); 
+       
+        
+       $('.subbtn').addClass('disabled');
+       $('.subbtn').text("loading...");
+       
+		$.ajax({
+        	url: "backend/add.php",
+			type: "POST",
+			data:  new FormData(this),
+			contentType: false,
+    	    cache: false,
+			processData:false,
+			success: function(data)
+		    {
+                
+		          alert("New user added successfully...");
+                $('.resetform').click();
+                 $('.subbtn').removeClass('disabled');
+                $('.subbtn').text("Submit");
+                listload(0);
+		    },
+		  	error: function() 
+	    	{
+	    	} 	        
+	   });
+	}));
+});
+                  $('.email').keyup(function(){
+                      var email= $(this).val();
+                   $(this).val($(this).val().slice(0,64));
+	  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+if (regex.test($('.email').val()))
+    { $.post('backend/check_email.php', {
+                 email:email
+              }, function(data) {
+                  
+                     
+                  if(data==1)
+                      {
+                        $('.subbtn').removeClass('disabled'); 
+                          $('.info-email').html(" ");
+                      }
+                     else{
+                         $('.subbtn').addClass('disabled'); 
+                         $('.info-email').html("<b>Email alerady exists...</b>");
+                     }
+                
+               }); 
+    }
+	});
+            
+</script>
+  
+    </div>
+      </div>
+    <script src="js/pages.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
